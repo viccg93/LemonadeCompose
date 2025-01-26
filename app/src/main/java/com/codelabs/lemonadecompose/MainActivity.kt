@@ -33,11 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LemonadeComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LemonadeApp()
-                }
-            }
+            LemonadeApp()
         }
     }
 }
@@ -53,7 +49,7 @@ fun LemonImageAndLegend(modifier: Modifier = Modifier) {
 
     var currentState: Int by remember { mutableStateOf(1) }
 
-    //evalua estado posterior al click
+    //evalua estado cuando se le da click
     when {
         currentState == 2 -> {
             imageResource = R.drawable.lemon_squeeze
@@ -82,11 +78,15 @@ fun LemonImageAndLegend(modifier: Modifier = Modifier) {
             if(currentState == 4){
                 currentState = 1
             }else if (currentState == 2){
+                //calcula el valor random de la cantidaa de veces que se debe exprimir el limon
                 if(lemonSqueezCount == 0){
                     lemonSqueezNeeded = (2..4).random()
                 }
+                //como lemonSqueezCount no esta delegado, su modificacion no implica
+                //una recomposición por lo que los valores de las variable se mantienen
                 lemonSqueezCount++
                 if(lemonSqueezCount == lemonSqueezNeeded) {
+                    //aqui si sucede una recomposicion porque se modifica currentState
                     currentState = 3
                     lemonSqueezCount = 0
                 }
