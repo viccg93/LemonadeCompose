@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -59,23 +60,23 @@ fun LemonImageAndLegend(modifier: Modifier = Modifier) {
     when {
         currentState == 2 -> {
             imageResource = R.drawable.lemon_squeeze
-            imageDescription = "Lemon to squeeze"
-            legend = "Keep tapping the lemon to squeeze it"
+            imageDescription = stringResource(R.string.lemon_to_squeeze)
+            legend = stringResource(R.string.state_2_description)
         }
         currentState == 3 -> {
             imageResource = R.drawable.lemon_drink
-            imageDescription = "Lemonade to drink"
-            legend = "Tap the lemonade to drink it"
+            imageDescription = stringResource(R.string.lemonade_to_drink)
+            legend = stringResource(R.string.state_3_description)
         }
         currentState == 4 -> {
             imageResource = R.drawable.lemon_restart
-            imageDescription = "empty glass"
-            legend = "Tap the empty glass to start again"
+            imageDescription = stringResource(R.string.empty_glass)
+            legend = stringResource(R.string.state_4_description)
         }
         else -> {
             imageResource = R.drawable.lemon_tree
-            imageDescription = "Lemon tree"
-            legend = "Tap the lemon tree to select a lemon"
+            imageDescription = stringResource(R.string.lemon_tree)
+            legend = stringResource(R.string.state_1_description)
         }
     }
 
@@ -139,7 +140,13 @@ fun TopBar(modifier: Modifier = Modifier){
 @Preview(showBackground = true)
 @Composable
 fun LemonadeApp() {
-    TopBar(Modifier.background(Color.Yellow).fillMaxWidth().height(80.dp))
-    LemonImageAndLegend(modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.Center))
+    TopBar(
+        Modifier
+            .background(Color.Yellow)
+            .fillMaxWidth()
+            .height(80.dp))
+    LemonImageAndLegend(modifier = Modifier
+        .fillMaxSize()
+        .wrapContentSize(Alignment.Center))
 }
 
